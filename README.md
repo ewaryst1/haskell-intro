@@ -6,7 +6,7 @@ https://www.haskell.org/ghcup/
 
 ## Getting Started
 
-Haskell is a pure functional, statically (implicitly) typed, lazy language.
+Haskell is a purely functional, statically (implicitly) typed, lazy language.
 
 From a [Haskell review](https://bytes.yingw787.com/posts/2020/01/30/a_review_of_haskell/): 
 

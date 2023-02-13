@@ -4,6 +4,7 @@
 -- Algebraic Data Types
 
 data Tree = Leaf Int | Branch Tree Tree
+    deriving (Eq, Show, Read)
 
 -- patterns
 
