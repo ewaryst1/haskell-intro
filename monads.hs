@@ -33,24 +33,6 @@ instance Monad Value where
 
 -- do notation
 
--- rules -> https://wiki.haskell.org/Monads_as_computation#Do_notation
--- see:
---do { x } = x
---
---do { x ; <stmts> }
---  = x >> do { <stmts> }
---
---do { v <- x ; <stmts> }
---  = x >>= \v -> do { <stmts> }
---
---do { let <decls> ; <stmts> }
---  = let <decls> in do { <stmts> }
---
--- do { expr1; expr2; expr3 }  ==>  do { expr1; do { expr2; expr3 } }
--- do { x <- expr1; expr2 }   ==>  expr1 >>= \x -> expr2
--- do { expr1; expr2 }  ==>  expr1 >> expr2
-
-
 myfun = do
     ten <- Value 10
     twenty <- f ten
@@ -60,6 +42,14 @@ myfun = do
     return fortyTwenty
 
 -- see also: infixl 7 ***, infixr 10 ***
+
+
+-- rules -> https://wiki.haskell.org/Monads_as_computation#Do_notation
+-- see:
+--do { x }  =  x
+--do { x ; <stmts> }  =  x >> do { <stmts> }
+--do { v <- x ; <stmts> }  =  x >>= \v -> do { <stmts> }
+--do { let <decls> ; <stmts> }  =  let <decls> in do { <stmts> }
 
 
 -- IO monad
