@@ -16,12 +16,27 @@ exprParser = withParens <|> mult <|> leaf
   where
     leaf = Val <$> aNumber
     withParens = (char '(') >> exprParser <* (char ')')
+    noMult = withParens <|> leaf
     mult = do
-       l <- exprParser
+       l <- noMult
        char '*'
        r <- exprParser
        return $ Mult l r
 
+exprParser2 :: Parser Expr
+exprParser2 = do
+     l <- noMult
+     option l $ multRemainder l
+  where
+    leaf = Val <$> aNumber
+    withParens = (char '(') >> exprParser2 <* (char ')')
+    noMult = withParens <|> leaf
+    multRemainder l = do
+       char '*'
+       r <- exprParser2
+       return $ Mult l r
+
+ep = exprParser2 <* eof
 
 simpleExprParser :: Parser Expr
 simpleExprParser = do
